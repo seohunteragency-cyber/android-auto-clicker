@@ -3,8 +3,6 @@ name: Android CI
 on:
   push:
     branches: [ "main", "master" ]
-  pull_request:
-    branches: [ "main", "master" ]
 
 jobs:
   build:
@@ -19,11 +17,14 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
-    - name: Build with Gradle
-      run: |
-        bash gradlew assembleDebug || gradle assembleDebug
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v3
 
+    - name: Build with Gradle
+      run: gradle assembleDebug --stacktrace
+      
     - name: Upload APK
+      if: success()
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
