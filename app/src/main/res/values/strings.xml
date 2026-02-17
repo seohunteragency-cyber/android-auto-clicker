@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android Auto Clicker</string>
+    <string name="accessibility_service_label">Auto Clicker Service</string>
+    <string name="accessibility_service_description">Detecta y hace click en botones automáticamente.</string>
+</resources>
